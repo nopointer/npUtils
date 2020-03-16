@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * 按键工具
  */
-public class KeyEventUtils {
+class KeyEventUtils {
     private KeyEventUtils() {
     }
 

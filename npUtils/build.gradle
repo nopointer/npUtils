@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion var.minSdkVersion
         targetSdkVersion var.targetSdkVersion
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true
     }
 
@@ -28,7 +28,4 @@ android {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/javax.mail-1.6.0.jar')
-    implementation files('libs/activation.jar')
-    implementation files('libs/additionnal.jar')
 }

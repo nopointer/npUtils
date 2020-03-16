@@ -1,36 +1,31 @@
 package demo.nopointer.npUtils;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.media.AudioManager;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 
-import java.io.File;
 import java.util.List;
 
 import npUtils.nopointer.control.MusicControlUtils;
+import npUtils.nopointer.control.MusicPlayerInfoBean;
+import npUtils.nopointer.control.MusicPlayerInfoUtils;
 
 public class MainActivity extends Activity {
 
-    AudioManager mAudioManager = null;
 
-    private ComponentName mMediaButtonReceiverComponent;
+    private String TAG = "fuck";
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-//        Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
-//        startActivity(intent);
 
         //上一首
         findViewById(R.id.control_preview).setOnClickListener(new View.OnClickListener() {
@@ -45,6 +40,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 MusicControlUtils.startPause(MainActivity.this);
+
+//                sendMusicKeyEvent(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+//                debug();
             }
         });
 
@@ -56,56 +54,43 @@ public class MainActivity extends Activity {
             }
         });
 
+//        fuck();
 
+        MusicPlayerInfoUtils musicPlayerInfoUtils = new MusicPlayerInfoUtils();
 
-
-        PackageManager pm = this.getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        intent.setDataAndType(Uri.fromFile(new File("")), "audio/*");// type:改成"video/*"表示获取视频的
-        List<ResolveInfo> mResolveInfoList = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-//
-        String TAG = "tag";
-        for (ResolveInfo ri : mResolveInfoList) {
-
-            Log.e(TAG, "Icon: " + ri.loadIcon(pm));
-            Log.e(TAG, "应用名: " + ri.loadLabel(pm));
-            Log.e(TAG, "包名: " + ri.activityInfo.packageName);
-
+        MusicPlayerInfoBean musicPlayerInfoBean = musicPlayerInfoUtils.getCurrentRunningMusicPlayInfo(this);
+        if (musicPlayerInfoBean != null) {
+            Log.e("fuck", musicPlayerInfoBean.getPackName());
+        } else {
+            Log.e("fuck", "空的");
         }
+//        new MusicPlayerInfoUtils().getCurrentRunningMusicPlayInfo(this);
 
-//        Intent intent=new Intent(Intent.ACTION_VIEW);
-//        intent.setDataAndType(uri, MimeType);//媒体的Uri和MimeType
-//        startActivity(intent);
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.e("demo", "后台控制下一首");
-//                MusicControlUtils.nextSong(MainActivity.this);
-//            }
-//        }, 5000);
-
-        AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//构造一个ComponentName，指向MediaoButtonReceiver类
-//下面为了叙述方便，我直接使用ComponentName类来替代MediaoButtonReceiver类
-        ComponentName mbCN = new ComponentName(getPackageName(), MediaButtonReceiver.class.getName());
-//注册一个MedioButtonReceiver广播监听
-        mAudioManager.registerMediaButtonEventReceiver(mbCN);
-//取消注册的方法
-//        mAudioManager.unregisterMediaButtonEventReceiver(mbCN);
-
-//        start();
     }
 
-    private void start(){
-        ComponentName chatService =new ComponentName("com.tencent.qqmusic/android.support.v4.media.session.MediaButtonReceiver");
 
-        Intent intent =new Intent();
+    private void fuck() {
+//        PackageManager pm = getPackageManager();
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//        intent.setDataAndType(Uri.fromFile(new File("")), "audio/*");// type:改成"video/*"表示获取视频的
+//        List<ResolveInfo> mResolveInfoList = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+//        for (ResolveInfo ri : mResolveInfoList) {
+//            Log.e(TAG, "应用名: " + ri.loadLabel(pm) + "///" + "包名: " + ri.activityInfo.packageName);
+//        }
 
-        intent.setComponent(chatService );
+        PackageManager packageManager = getPackageManager();
 
-        startService(intent);
+        Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        List<ResolveInfo> resolveInfoList = packageManager.queryBroadcastReceivers(intent, PackageManager.MATCH_ALL);
+        Log.e("fuck,resolveInfoList", resolveInfoList.size() + "");
+        for (ResolveInfo resolveInfo : resolveInfoList) {
+            Log.e("fuck,resolveInfoList", resolveInfo.activityInfo.packageName + "///" + resolveInfo.activityInfo.maxRecents);
+        }
+
     }
 
 

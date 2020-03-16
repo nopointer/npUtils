@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="demo.nopointer.npUtils">
 
+
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -21,12 +23,18 @@
         </activity>
 
 
-        <receiver android:name=".MediaButtonReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON"></action>
-            </intent-filter>
-        </receiver>
+        <!--        <receiver android:name=".MediaButtonReceiver">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MEDIA_BUTTON"></action>-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
         <service android:name=".TmpService" />
+<!--        <service-->
+<!--            android:name=".MusicStateListener"-->
+<!--            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />-->
     </application>
+    <uses-permission android:name="android.permission.ACCESS_BLUETOOTH_AVRCP_CT_DATA" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
 </manifest>
