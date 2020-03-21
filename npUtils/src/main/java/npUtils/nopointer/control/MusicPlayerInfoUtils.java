@@ -3,11 +3,14 @@ package npUtils.nopointer.control;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,31 +100,53 @@ public class MusicPlayerInfoUtils {
     public static List<String> getLocalInstallPlayerPackName(Context context) {
         PackageManager packageManager = context.getPackageManager();
         Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
-        List<ResolveInfo> resolveInfoList = packageManager.queryBroadcastReceivers(intent, PackageManager.MATCH_ALL);
+        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        List<ResolveInfo> resolveInfoList = packageManager.queryBroadcastReceivers(intent, PackageManager.GET_UNINSTALLED_PACKAGES);
 
 
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent = new Intent(Intent.ACTION_VIEW);
 //        intent.addCategory(Intent.CATEGORY_DEFAULT);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 //        intent.setDataAndType(Uri.fromFile(new File("")), "audio/*");// type:改成"video/*"表示获取视频的
-//        List<ResolveInfo> resolveInfoList = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-
+//        resolveInfoList = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+//
         List<String> packNameList = new ArrayList<>();
         if (resolveInfoList != null && resolveInfoList.size() > 0) {
             for (ResolveInfo resolveInfo : resolveInfoList) {
-//                Log.e("fuck,activityInfo",resolveInfo.activityInfo.packageName);
+//                Log.e("fuck,activityInfo", resolveInfo.activityInfo.packageName);
                 packNameList.add(resolveInfo.activityInfo.packageName);
             }
         }
-        packNameList.remove("com.alibaba.android.rimet");
-        packNameList.remove("com.chaozh.iReaderFree");
-        packNameList.remove("com.xiaomi.smarthome");
-        packNameList.remove("com.miui.cit");
-        packNameList.remove("cn.wps.moffice_eng");
-        packNameList.remove("com.duokan.reader");
-        packNameList.remove("com.estrongs.android.pop");
-        packNameList.remove("com.mxtech.videoplayer.ad");
-        packNameList.remove("com.xiaomi.smarthome");
+
+
+        intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_RETAIN_IN_RECENTS);
+        intent.setDataAndType(Uri.fromFile(new File("")), "audio/*");// type:改成"video/*"表示获取视频的
+        resolveInfoList = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        try {
+            ActivityInfo activityInfo = packageManager.getReceiverInfo(MusicPlayerInfoUtils.mappingMusicPlayerInfo("com.netease.cloudmusic").getComponentName(),PackageManager.GET_PROVIDERS);
+            Log.e("fuck,",activityInfo.applicationInfo.uiOptions+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        Log.e("fuck,intent", intent.getPackage());
+        packNameList = new ArrayList<>();
+        if (resolveInfoList != null && resolveInfoList.size() > 0) {
+            for (ResolveInfo resolveInfo : resolveInfoList) {
+//                Log.e("fuck,activityInfo 2////", resolveInfo.activityInfo.packageName);
+                packNameList.add(resolveInfo.activityInfo.packageName);
+            }
+        }
+
+//        packNameList.remove("com.alibaba.android.rimet");
+//        packNameList.remove("com.chaozh.iReaderFree");
+//        packNameList.remove("com.xiaomi.smarthome");
+//        packNameList.remove("com.miui.cit");
+//        packNameList.remove("cn.wps.moffice_eng");
+//        packNameList.remove("com.duokan.reader");
+//        packNameList.remove("com.estrongs.android.pop");
+//        packNameList.remove("com.mxtech.videoplayer.ad");
+//        packNameList.remove("com.xiaomi.smarthome");
         return packNameList;
     }
 

@@ -1,0 +1,43 @@
+2020-03-17 21:32:04.524 ? D/MediaSessionService: Sending KeyEvent
+{ action=ACTION_DOWN, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0,
+flags=0x0, repeatCount=0, eventTime=97237980, downTime=97237980, deviceId=-1,
+ source=0x0, displayId=0 } to the last known
+PendingIntent PendingIntent{527da88: PendingIntentRecord{3bdac21 com.netease.cloudmusic broadcastIntent}}
+
+2020-03-17 21:32:04.527 ? D/MediaSessionService: Sending KeyEvent
+{ action=ACTION_UP, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0,
+flags=0x0, repeatCount=0, eventTime=97237981, downTime=97237981, deviceId=-1,
+ source=0x0, displayId=0 } to the last known
+ PendingIntent PendingIntent{527da88: PendingIntentRecord{3bdac21 com.netease.cloudmusic broadcastIntent}}
+
+
+
+
+ 2020-03-18 16:13:23.610 ? D/MediaSessionService: Sending KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=466492, downTime=466492, deviceId=-1, source=0x0, displayId=0 } to the last known PendingIntent PendingIntent{2a778be: PendingIntentRecord{90c7d1f com.kugou.android broadcastIntent}}
+ 2020-03-18 16:13:23.613 ? D/MediaSessionService: Sending KeyEvent { action=ACTION_UP, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0, flags=0x0, repeatCount=0, eventTime=466493, downTime=466493, deviceId=-1, source=0x0, displayId=0 } to the last known PendingIntent PendingIntent{2a778be: PendingIntentRecord{90c7d1f com.kugou.android broadcastIntent}}
+
+
+
+
+
+
+
+
+ 3-19 16:59:15.837 24585-24619/com.crrepa.band.dafit D/dafit_tag: ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 03-19 16:59:15.838 24585-24619/com.crrepa.band.dafit D/dafit_tag: │ onOperationChange: 0
+ 03-19 16:59:15.838 24585-24619/com.crrepa.band.dafit D/dafit_tag: └────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 03-19 16:59:15.846 3386-6592/com.miui.whetstone D/BroadcastLimitPolicy: [ALLOW]
+ [broadcast] callerPackage com.tencent.qqmusic start process with Intent {
+  act=android.intent.action.MEDIA_BUTTON flg=0x10000010 cmp=com.tencent.qqmusic/android.support.v4.media.session.MediaButtonReceiver (has extras) } componentName com.tencent.qqmusic/android.support.v4.media.session.MediaButtonReceiver [reason:3]
+
+     --------- beginning of system
+
+
+
+     2020-03-19 20:33:26.457 ? D/dafit_tag: ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     2020-03-19 20:33:26.457 ? D/dafit_tag: │ onOperationChange: 0
+     2020-03-19 20:33:26.458 ? D/dafit_tag: └────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     2020-03-19 20:33:26.458 ? V/AudioManager: isMusicActive...
+     2020-03-19 20:33:26.461 ? D/MediaSessionService: dispatchMediaKeyEvent, pkg=com.crrepa.band.dafit pid=31674, uid=10041, asSystem=false, record_size=0, event=KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0, flags=0x0, hwFlags=0x0, repeatCount=0, eventTime=8786250, downTime=8786250, deviceId=-1, source=0x0 }
+     2020-03-19 20:33:26.462 ? D/MediaSessionService: Sending KeyEvent { action=ACTION_DOWN, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0, flags=0x0, hwFlags=0x0, repeatCount=0, eventTime=8786250, downTime=8786250, deviceId=-1, source=0x0 } to the restored intent ComponentInfo{com.kugou.android/com.kugou.framework.service.MediaButtonIntentReceiver}
+     2020-03-19 20:33:26.465 ? D/MediaSessionService: dispatchMediaKeyEvent, pkg=com.crrepa.band.dafit pid=31674, uid=10041, asSystem=false, record_size=0, event=KeyEvent { action=ACTION_UP, keyCode=KEYCODE_MEDIA_PLAY, scanCode=0, metaState=0, flags=0x0, hwFlags=0x0, repeatCount=0, eventTime=8786251, downTime=8786251, deviceId=-1, source=0x0 }
