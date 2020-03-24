@@ -1,14 +1,22 @@
 package demo.nopointer.npUtils;
 
-import android.app.Service;
 import android.content.Intent;
+import android.media.browse.MediaBrowser;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.service.media.MediaBrowserService;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+
+import java.util.List;
 
 import npUtils.nopointer.control.MusicControlUtils;
 
-public class TmpService extends Service {
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+public class TmpService extends MediaBrowserService {
 
     private Handler handler = new Handler();
 
@@ -16,6 +24,17 @@ public class TmpService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Nullable
+    @Override
+    public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {
+        return null;
+    }
+
+    @Override
+    public void onLoadChildren(@NonNull String parentId, @NonNull Result<List<MediaBrowser.MediaItem>> result) {
+
     }
 
     @Override
