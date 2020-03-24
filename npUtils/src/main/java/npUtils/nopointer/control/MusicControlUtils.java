@@ -29,7 +29,7 @@ public class MusicControlUtils {
      */
     private static boolean isMusicPlaying(Context context) {
         AudioManager audioManager = getAudioManager(context);
-        audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+//        audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         boolean isMusicActive = audioManager.isMusicActive();
         return isMusicActive;
     }
