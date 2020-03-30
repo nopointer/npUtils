@@ -5,7 +5,7 @@ import android.content.ComponentName;
 /**
  * 第三方音乐播放器的Play信息
  */
-public class MusicPlayerInfoBean {
+ class MusicPlayerInfoBean {
 
 
     public MusicPlayerInfoBean() {
