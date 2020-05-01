@@ -1,4 +1,4 @@
-package npUtils.nopointer.control;
+package npUtils.nopointer.control.media;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import static android.media.AudioManager.ADJUST_RAISE;
 import static android.media.AudioManager.FLAG_SHOW_UI;
 
 /**
- * 音乐控制 工具类
+ * 媒体控制 工具类
  */
-public class MusicControlUtils {
+public class MediaControlUtils {
 
     /**
      * 获取音频管理器
@@ -83,6 +83,7 @@ public class MusicControlUtils {
 
     /**
      * 获取多媒体最大音量
+     *
      * @param context
      * @return
      */
@@ -92,42 +93,46 @@ public class MusicControlUtils {
 
     /**
      * 获取多媒体音量
+     *
      * @param context
      * @return
      */
-    public static  int getMediaVolume(Context context) {
+    public static int getMediaVolume(Context context) {
         return getAudioManager(context).getStreamVolume(AudioManager.STREAM_MUSIC);
     }
 
     //获取通话最大音量
-    public static  int getCallMaxVolume(Context context) {
+    public static int getCallMaxVolume(Context context) {
         return getAudioManager(context).getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL);
     }
 
     /**
      * 获取系统音量最大值
+     *
      * @param context
      * @return
      */
-    public static  int getSystemMaxVolume(Context context) {
+    public static int getSystemMaxVolume(Context context) {
         return getAudioManager(context).getStreamMaxVolume(AudioManager.STREAM_SYSTEM);
     }
 
     /**
      * 获取系统音量
+     *
      * @param context
      * @return
      */
-    public static  int getSystemVolume(Context context) {
+    public static int getSystemVolume(Context context) {
         return getAudioManager(context).getStreamVolume(AudioManager.STREAM_SYSTEM);
     }
 
     /**
      * 获取提示音量最大值
+     *
      * @param context
      * @return
      */
-    public  static int getAlermMaxVolume(Context context) {
+    public static int getAlermMaxVolume(Context context) {
         return getAudioManager(context).getStreamMaxVolume(AudioManager.STREAM_ALARM);
     }
 
@@ -135,7 +140,7 @@ public class MusicControlUtils {
      * 设置多媒体音量
      * 这里我只写了多媒体和通话的音量调节，其他的只是参数不同，大家可仿照
      */
-    public static  void setMediaVolume(Context context,int volume) {
+    public static void setMediaVolume(Context context, int volume) {
         getAudioManager(context).setStreamVolume(AudioManager.STREAM_MUSIC, //音量类型
                 volume,
                 AudioManager.FLAG_PLAY_SOUND
@@ -144,10 +149,11 @@ public class MusicControlUtils {
 
     /**
      * 设置通话音量
+     *
      * @param context
      * @param volume
      */
-    public  static void setCallVolume(Context context,int volume) {
+    public static void setCallVolume(Context context, int volume) {
         getAudioManager(context).setStreamVolume(AudioManager.STREAM_VOICE_CALL,
                 volume,
                 AudioManager.STREAM_VOICE_CALL);
@@ -155,10 +161,11 @@ public class MusicControlUtils {
 
     /**
      * 关闭/打开扬声器播放
+     *
      * @param context
      * @param on
      */
-    public  static void setSpeakerStatus(Context context, boolean on) {
+    public static void setSpeakerStatus(Context context, boolean on) {
         AudioManager audioManager = getAudioManager(context);
         if (on) { //扬声器
             audioManager.setSpeakerphoneOn(true);
@@ -179,7 +186,7 @@ public class MusicControlUtils {
      *
      * @param isAdd true 表示+ false 表示-
      */
-    public static  void adjustStreamVolume(Context context, boolean isAdd) {
+    public static void adjustStreamVolume(Context context, boolean isAdd) {
         getAudioManager(context).adjustStreamVolume(AudioManager.STREAM_MUSIC,
                 isAdd ? ADJUST_RAISE : ADJUST_LOWER, 0);
     }
@@ -190,7 +197,7 @@ public class MusicControlUtils {
      * @param context
      * @param isMuteMode
      */
-    public static  void setMuteMode(Context context, boolean isMuteMode) {
+    public static void setMuteMode(Context context, boolean isMuteMode) {
         AudioManager audioManager = getAudioManager(context);
         if (isMuteMode) {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
