@@ -15,6 +15,7 @@ import android.view.View;
 
 import npUtils.nopointer.control.media.MediaControlUtils;
 import npUtils.nopointer.control.phone.PhoneUtils;
+import npUtils.nopointer.control.system.SystemUtils;
 
 public class MainActivity extends Activity {
 
@@ -62,8 +63,29 @@ public class MainActivity extends Activity {
             }
         });
 
+        findViewById(R.id.close_system).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SystemUtils.shutdown(MainActivity.this);
+            }
+        });
+
+        findViewById(R.id.rebot_system).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SystemUtils.reboot(MainActivity.this);
+            }
+        });
+
+        findViewById(R.id.open_system).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SystemUtils.setPowerOffAlarm(MainActivity.this);
+            }
+        });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.CALL_PHONE},100);
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE,"android.permission.SHUTDOWN"}, 100);
         }
     }
 
